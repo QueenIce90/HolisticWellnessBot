@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holistic AI Chat Bot</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Holistic AI Chat Bot</h1>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="confirmPassword">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <div id="errorMessage" class="error-message"></div>
+        </form>
+    </div>
+
+    <!-- Bootstrap & jQuery JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function() {
+            $('#signupForm').submit(function(e) {
+                e.preventDefault();
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var confirmPassword = $('#confirmPassword').val();
+
+                if (name === '' || email === '' || password === '' || confirmPassword === '') {
+                    $('#errorMessage').text('Please fill in all fields.');
+                } else if (password !== confirmPassword) {
+                    $('#errorMessage').text('Passwords do not match.');
+                } else {
+                    alert('Sign up successful!');
+                    // Perform sign up logic here
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
+
+
+

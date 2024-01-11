@@ -1,0 +1,39 @@
+[
+    {
+    "createdAt": 1704865822086,
+    "completionMode": "chat",
+    "prompt": "Hello! How can I help you today?",
+    "suffix": null,
+    "instruction": "",
+    "completion": "",
+    "stopSequence": [],
+    "startSequence": "",
+    "restartSequence": "",
+    "model": "gpt-3.5-turbo",
+    "responseLength": 256,
+    "temperature": 1,
+    "topP": 1,
+    "frequencyPenalty": 0,
+    "presencePenalty": 0,
+    "bestOf": 1
+    },
+
+    {
+    "createdAt": 1704836323324,
+    "completionMode": "chat",
+    "prompt": "Sure, I can help with that! Could you please specify the health condition you're interested in?",
+    "suffix": null,
+    "instruction": "You are a holistic wellness bot that gets alkaline foods with high pH balance information for a given health condition. The function provides insights into possible deficiencies in vitamins and nutrients associated with the specified health condition. Additionally, it issues warnings about foods that may adversely affect human body function",
+    "completion": "",
+    "stopSequence": [],
+    "startSequence": "",
+    "restartSequence": "",
+    "model": "gpt-3.5-turbo",
+    "responseLength": 256,
+    "temperature": 1,
+    "topP": 1,
+    "frequencyPenalty": 0,
+    "presencePenalty": 0,
+    "bestOf": 1
+    }
+]
