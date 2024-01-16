@@ -2,9 +2,9 @@
 import './App.css';
 import React, { useState } from "react";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Logout from './pages/Logout';
+import Signup from './component/UserPanel/Signup';
+import Login from './component/UserPanel/Login';
+import Logout from './component/UserPanel/Logout';
 import Home from './pages/Home';
 import HolisticChatBot from './pages/HolisticChatBot'
 
@@ -13,7 +13,7 @@ const POST_HEADERS = {
   'Accept': 'application/json'
 }
 
-
+const URL = '/api'
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +30,7 @@ function App() {
   // }
 // SIGNUP //
 async function attemptSignup(userInfo) {
-  const res = await fetch(URL + '/users', {
+  const res = await fetch(URL + '/signup', {
     method: 'POST',
     headers: POST_HEADERS,
     body: JSON.stringify(userInfo)
@@ -45,7 +45,8 @@ async function attemptSignup(userInfo) {
 
 // LOGIN //
 async function attemptLogin(userInfo) {
-  const res = await fetch(URL + '/login', {
+  console.log(currentUser)
+  const res = await fetch("http://127.0.0.1:5555" + URL + '/login', {
     method: 'POST',
     headers: POST_HEADERS,
     body: JSON.stringify(userInfo)

@@ -1,6 +1,6 @@
-import Signup from "../pages/Signup";
-import Login from "../pages/Login";
-import UserDetails from "../UserDetails";
+import Signup from "./Signup";
+import Login from "./Login";
+import UserDetails from "./UserDetails";
 
 function UserPanel({currentUser, logout, attemptLogin, attemptSignup}) {
     if (!currentUser) {

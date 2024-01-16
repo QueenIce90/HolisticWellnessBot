@@ -40,7 +40,7 @@ def current_user():
 
 # USER SIGNUP #
 
-@app.post(URL_PREFIX + '/users')
+@app.post(URL_PREFIX + '/signup')
 def create_user():
     try:
         data = request.json
@@ -65,6 +65,8 @@ def get_users():
 @app.post(URL_PREFIX + '/login')
 def login():
     data = request.json
+    print(request)
+    print(data)
     user = User.query.filter(User.email == data["email"]).first()
     if user and bcrypt.check_password_hash(user.password_hash, data['password']):
         session["user_id"] = user.id
@@ -171,7 +173,6 @@ def handle_request():
         model="gpt-3.5-turbo",
         
         messages = [
-        {"role": "user", "content": "What's a good diet plan for acid reflux?"},
         {"role": "assistant",
         "content": "Sure, I can help you with that. Please wait a moment while I retrieve the information."},
         {"role": "assistant",
@@ -180,6 +181,7 @@ def handle_request():
         temperature=1,
         max_tokens=256,
         top_p=1,
+
         frequency_penalty=0,
         presence_penalty=0
     )

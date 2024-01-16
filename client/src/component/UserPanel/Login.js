@@ -1,8 +1,8 @@
-import NavBar from "../component/NavBar";
+import NavBar from "../NavBar";
 
 
 
-function Login() {
+function Login({currentUser, attemptLogin, setCurrentUser}) {
     return (
         
         <>
@@ -19,7 +19,7 @@ function Login() {
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"/>
             </div>
-            <button type="button" class="btn btn-outline-primary">Login</button>
+            <button onClick={() => {attemptLogin(currentUser)}} type="button" class="btn btn-outline-primary">Login</button>
             <p>Don't have an account? <a href="/signup">Signup</a></p>  
             <div id="errorMessage" class="error-message"></div>
         </form>

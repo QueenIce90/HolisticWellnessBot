@@ -43,8 +43,8 @@ function HolisticChatBot() {
     
     useEffect(() => {
         console.log(currentTitle, value, message)
-        if (!currentTitle && value && message) {
-            setCurrentTitle(value)
+        if (!currentTitle && value) {
+            setCurrentTitle("test")
         }
         if (currentTitle && value && message) {
             setPreviousChats(prevChats => (

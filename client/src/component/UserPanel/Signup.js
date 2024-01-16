@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-function Signup({attemptSignup, currentUser, setCurrentUser}) {
+function Signup({attemptSignup}) {
 
     //STATE//
 

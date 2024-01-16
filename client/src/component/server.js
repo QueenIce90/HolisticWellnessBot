@@ -1,4 +1,5 @@
-const PORT = 8000
+
+const PORT = 5555
 const express = require('express')
 const cors = require('cors')
 const app = express()
@@ -7,7 +8,7 @@ app.use(cors())
 
 app.listen(PORT, () => console.log ('Your server is running on PORT'+ PORT))
 
-const API_KEY = OPENAI_API_KEY
+const API_KEY = OPENAI_API_KEY;
 
 app.post('/completions', async (req, res) => {
     const options = {
@@ -19,8 +20,8 @@ app.post('/completions', async (req, res) => {
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
-            messages : [{"role": "user", content: "Hello Holistic Wellness Assistant is here to assistant you, What are your health concerns?"},],
-                max_tokens:200,
+            messages : [{role: "user", content: "Hello Holistic Wellness Assistant is here to assistant you, What are your health concerns?"},],
+                max_tokens:150,
         })
     }
     try {
@@ -29,5 +30,6 @@ app.post('/completions', async (req, res) => {
         res.send(data)
     } catch (error) {
         console.error(error);
+        // res.status(500).send({ error: 'Internal Server Error' });
     }
 })
