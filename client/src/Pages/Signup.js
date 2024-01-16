@@ -1,84 +1,79 @@
-import React, { useState } from 'react';
-import './style.css';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
-const [name, setName] = useState('');
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [confirmPassword, setConfirmPassword] = useState('');
-const [errorMessage, setErrorMessage] = useState('');
-const navigate = useNavigate();
 
-const handleFormSubmit = (e) => {
-    e.preventDefault();
 
-    if (name === '' || email === '' || password === '' || confirmPassword === '') {
-    setErrorMessage('Please fill in all fields.');
-    } else if (password !== confirmPassword) {
-    setErrorMessage('Passwords do not match.');
-    } else {
-      // Perform sign-up logic here
-    alert('Sign up successful!');
-      // Redirect to login page or any other page
-    navigate('/login');
+
+function Signup({attemptSignup, currentUser, setCurrentUser}) {
+
+    //STATE//
+
+    const [userInfo, setUserInfo] = useState({
+        name: "",
+        email: "",
+        password: ""
+    })
+
+    //EVENTS//
+    const handleChange = (e) => {
+        setUserInfo({
+            ...userInfo,
+            [e.target.name]: e.target.value
+        })
     }
-};
 
-return (
-    <div>
-    <form onSubmit={handleFormSubmit}>
-        <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-        </div>
-
-        <div>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </div>
-
-        <div>
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </div>
-
-        <div>
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        </div>
-
-        <button type="submit">Sign Up</button>
-    </form>
-
-    {errorMessage && <p id="errorMessage">{errorMessage}</p>}
-    </div>
-);
-};
-
-$(document).ready(function() {
-    $('#signupForm').submit(function(e) {
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
-        var name = $('#name').val();
-        var email = $('#email').val();
-        var password = $('#password').val();
-        var confirmPassword = $('#confirmPassword').val();
+        attemptSignup(userInfo);
+        navigate('/login');
+    }
 
-        if (name === '' || email === '' || password === '' || confirmPassword === '') {
-            $('#errorMessage').text('Please fill in all fields.');
-        } else if (password !== confirmPassword) {
-            $('#errorMessage').text('Passwords do not match.');
-        } else {
-            alert('Sign up successful!');
-            // Perform sign up logic here
-        }
-    });
-});
+    const navigate = useNavigate();
 
+    // const apiUrl = "http://127.0.0.1:5555/api/check_session";
+
+    return(
+        <div class="container">
+        <div class="text-center">
+        <h1 class="text-xxl-start">Signup</h1>
+        </div>
+        
+        <form onSubmit={(e) =>{
+            handleSubmit(e);
+            attemptSignup(userInfo);
+            navigate('/login');
+
+        } }id="signupForm">
+            <div class="p-2 bg-light border">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" onChange={handleChange} id="name" placeholder="Enter name" name="name"/>
+            </div>
+            <div class="p-2 bg-light border">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" onChange={handleChange} id="email" placeholder="Enter email" name="email"/>
+            </div>
+            <div class="p-2 bg-light border">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" onChange={handleChange} id="password" placeholder="Enter password" name="password"/>
+            </div>
+            <div class="shadow p-3 mb-5 bg-body rounded-">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" class="form-control" onChange={handleChange} id="confirmPassword" placeholder="Confirm password" name="confirmPassword"/>
+            </div > 
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+            <div id="errorMessage" class="error-message"></div>
+            <div class="d-grid gap-3">
+                <div class="text-center">
+                <p>Already have an account? <a href="/login">Login</a></p>
+                </div>
+                
+</div>
+        </form>
+    </div>
+    )
+}
 
 export default Signup;

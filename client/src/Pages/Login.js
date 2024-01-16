@@ -1,41 +1,31 @@
+import NavBar from "../component/NavBar";
 
-// LoginForm.js
-import React, { useState } from "react";
-import Navigation from "../Components/Navigation";
-import { useState } from 'react'
-import { useNavigate, NavLink } from "react-router-dom";
 
-const Login = ({ handleLogin }) => {
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    // API call to backend for login authentication
-    // Pass the login response data to handleLogin function
-    // handleLogin(response.userId);
-};
+function Login() {
+    return (
+        
+        <>
 
-return (
-    <div>
-    <h2>Login</h2>
-    <form onSubmit={handleSubmit}>
-        <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-    </form>
+        <NavBar />
+        <div class="container">
+        <h1>Login</h1>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"/>
+            </div>
+            <button type="button" class="btn btn-outline-primary">Login</button>
+            <p>Don't have an account? <a href="/signup">Signup</a></p>  
+            <div id="errorMessage" class="error-message"></div>
+        </form>
     </div>
-);
-};
+    </>
+    );
+}
 
-export default Login
+export default Login;

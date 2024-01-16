@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 import os
 from dotenv import load_dotenv
@@ -7,10 +6,12 @@ from flask import Flask, jsonify, request, session
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from models import db, User, Chat, HealthConditions, Treatment
+from flask_cors import CORS
 
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 app.secret_key = b'Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -51,6 +52,12 @@ def create_user():
         return new_user.to_dict(), 201
     except Exception as e:
         return { 'error': str(e) }, 406
+    
+@app.get(URL_PREFIX + '/users')
+def get_users():
+    users = User.query.all()
+    return jsonify([user.to_dict() for user in users]), 200
+
 
 
 # SESSION LOGIN/LOGOUT#
@@ -154,6 +161,8 @@ def create_treatment():
     except Exception as e:
         return jsonify({'error': str(e)}), 406
     
+
+    
 @app.route('/chatbot', methods=['POST'])
 def handle_request():
     prompt = request.json['prompt']
@@ -164,9 +173,9 @@ def handle_request():
         messages = [
         {"role": "user", "content": "What's a good diet plan for acid reflux?"},
         {"role": "assistant",
-        "content": "Sure, I can help you with that. Please wait a moment while I retrieve the information.",},
+        "content": "Sure, I can help you with that. Please wait a moment while I retrieve the information."},
         {"role": "assistant",
-        "content": "Holistic Wellness Assistant: {'healthCondition': 'acid reflux', 'unit': 'foods'}",},
+        "content": "Holistic Wellness Assistant: {'healthCondition': 'acid reflux', 'unit': 'foods'}"},
         ],
         temperature=1,
         max_tokens=256,
@@ -175,6 +184,9 @@ def handle_request():
         presence_penalty=0
     )
     return completion.choices[0].message.content
+
+    
+
 
 # APP RUN #
 
@@ -438,4 +450,3 @@ if __name__ == '__main__':
 
 # if __name__ == '__main__':
 #     app.run(port=5555, debug=True)
-

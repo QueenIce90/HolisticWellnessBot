@@ -1,32 +1,100 @@
-// App.js
-import React from 'react';
-import Navigation from './Navigation';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import './App.css';
+import React, { useState } from "react";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Logout from './pages/Logout';
+import Home from './pages/Home';
+import HolisticChatBot from './pages/HolisticChatBot'
+
+const POST_HEADERS = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
 
 
-const Home = () => <Home />;
-const Signup = () => <div>Signup Page</div>;
-const Login = () => <div>Login Page</div>;
-const HolisticAiAssistant = () => <div>Holistic AI Assistant Page</div>;
-const Calendar = () => <div>Calendar Page</div>;
-const DietPlans = () => <div>Diet Plans Page</div>;
+function App() {
+  const [currentUser, setCurrentUser] = useState(null)
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [user, setUser] = useState(null);
 
-const App = () => {
+  // const login = (user) => {
+  //   setIsLoggedIn(true);
+  //   setUser(user);
+  // }
+
+  // const logout = () => {
+  //   setIsLoggedIn(false);
+  //   setUser(null);
+  // }
+// SIGNUP //
+async function attemptSignup(userInfo) {
+  const res = await fetch(URL + '/users', {
+    method: 'POST',
+    headers: POST_HEADERS,
+    body: JSON.stringify(userInfo)
+  })
+  if (res.ok) {
+    const data = await res.json()
+    setCurrentUser(data)
+  } else {
+    alert('Invalid sign up')
+  }
+}
+
+// LOGIN //
+async function attemptLogin(userInfo) {
+  const res = await fetch(URL + '/login', {
+    method: 'POST',
+    headers: POST_HEADERS,
+    body: JSON.stringify(userInfo)
+  })
+  if (res.ok) {
+    const data = await res.json()
+    setCurrentUser(data)
+  } else {
+    alert('Invalid sign up')
+  }
+}
+
+// LOGOUT //
+function logout() {
+  setCurrentUser(null)
+  fetch(URL + '/logout', { method: "DELETE" })
+}
+
+  const routes = [
+    {
+      path: "/",
+      element: <Home currentUser={currentUser}/>
+    },
+    {
+      path: "/signup",
+      element: <Signup attemptSignup={attemptSignup} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+    },
+    {
+      path: "/login",
+      element: <Login attemptLogin={attemptLogin} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+    },
+    
+    {
+      path: "/logout",
+      element: <Logout logout={logout} currentUser={currentUser} />
+    },
+    {
+      path: "/holistic-chat-bot",
+      element: <HolisticChatBot />
+    }
+
+    
+  ]
+  const router = createBrowserRouter(routes);
+
   return (
-    <Router>
-      <div>
-        <Navigation/>
-          <Route path="/" exact component={Home} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/holistic-ai-assistant" component={HolisticAiAssistant} />
-          <Route path="/calendar" component={Calendar} />
-          <Route path="/deficiency" component={DietPlans} />
-        <DietPlans />
-        <Navigation />
-      </div>
-    </Router>
-  );
+    <RouterProvider router={router} />
+    
+  )
 }
 
 export default App;
