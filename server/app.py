@@ -168,24 +168,24 @@ def create_treatment():
 @app.route('/chatbot', methods=['POST'])
 def handle_request():
     prompt = request.json['prompt']
+    print(prompt)
+
     completion = openai.ChatCompletion.create(
-        # assistant_id=assistant_id,
         model="gpt-3.5-turbo",
-        
-        messages = [
-        {"role": "assistant",
-        "content": "Sure, I can help you with that. Please wait a moment while I retrieve the information."},
-        {"role": "assistant",
-        "content": "Holistic Wellness Assistant: {'healthCondition': 'acid reflux', 'unit': 'foods'}"},
-        ],
+        messages = [{
+            "role": "assistant",
+            "content": prompt
+        }],
         temperature=1,
         max_tokens=256,
         top_p=1,
-
         frequency_penalty=0,
         presence_penalty=0
     )
-    return completion.choices[0].message.content
+
+    print(completion.choices[0].message.content)
+
+    return completion.choices[0].message
 
     
 

@@ -7,6 +7,7 @@ import Login from './component/UserPanel/Login';
 import Logout from './component/UserPanel/Logout';
 import Home from './pages/Home';
 import HolisticChatBot from './pages/HolisticChatBot'
+import Calendar from './component/GoogleCalendar/Calendar';
 
 const POST_HEADERS = {
   'Content-Type': 'application/json',
@@ -86,6 +87,11 @@ function logout() {
     {
       path: "/holistic-chat-bot",
       element: <HolisticChatBot />
+    },
+    {
+      path: "/calendar",
+      element: <Calendar />
+
     }
 
     

@@ -63,6 +63,8 @@ class HealthConditions(db.Model, SerializerMixin):
     # SERIALIZER #
     serialize_rules = ("-id",)
 
+
+
 class Treatment(db.Model, SerializerMixin):
     # TABLE #
     __tablename__ = 'treatment'

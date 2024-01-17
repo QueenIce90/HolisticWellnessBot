@@ -6,6 +6,7 @@
 import {useState, useEffect} from 'react'
 
 
+
 function HolisticChatBot() {
     const [value, setValue] = useState(null);
     const [message, setMessage] = useState(null);
@@ -32,11 +33,13 @@ function HolisticChatBot() {
     
         try {
             const response = await fetch('http://127.0.0.1:5555/chatbot', options);
-            const data = await response.json();
-            console.log(data);
-            setMessage(data?.choices?.[0]?.message || "No response message");
+            const message = await response.json();
+            console.log("Here's my data: ", message);
+            setMessage(message?.content || "No response message");
+            // setMessage(data["message"])
             setValue("");
         } catch (error) {
+            console.log("uh oh")
             console.error(error);
         }
     };
@@ -74,7 +77,9 @@ function HolisticChatBot() {
     console.log(uniqueTitles)
 
     return (
+    
         <div className="HolisticChatBot">
+            
             <section className = "side-bar">
             <button className="new-chat" onClick={createNewChat}> + New Chat</button>
             {/* <img className="logo" src="/logo.png" alt="holistic chatbot" width="55%" height="70%" /> */}

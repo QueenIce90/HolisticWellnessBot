@@ -6,18 +6,16 @@ import { NavLink } from 'react-router-dom';
 function NavBar() {
     return (
 
-            <div>
-            <div  >
-            <div >
-    
+            <div class="btn btn-primary">
+            
             <NavLink to="/">
-            <button className="home-btn" 
+            <button className="navbar-brand" 
             >Home</button>
             </NavLink>
 
             {/* #Signup Button# */}
             <NavLink to="/signup">
-            <button className="signup-btn" 
+            <button className="navbar-brand" 
             >Signup</button>
             </NavLink>
 
@@ -25,28 +23,33 @@ function NavBar() {
 
             {/* # Login Button# */}
             <NavLink  to="/login">
-            <button className="login-btn" 
+            <button className="navbar-brand" 
             >Login</button>
             </NavLink>
 
             
             {/* # ChatBot Button# */}
             <NavLink to="/holistic-chat-bot">
-            <button className="chatbot-btn" 
+            <button className="navbar-brand" 
             >Holistic ChatBot</button>
+            </NavLink>
+
+            <NavLink to="/calendar">
+            <button className="navbar-brand"
+            >Calendar</button>
             </NavLink>
 
 
             <div>
-            <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+            
             </div>
             </div>
-            </div>
-    
-            </div>
+            
+
     );
 
 }

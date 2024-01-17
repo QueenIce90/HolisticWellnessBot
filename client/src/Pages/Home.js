@@ -4,14 +4,17 @@ import {NavLink} from "react-router-dom"
 
 
 function Home({currentUser, logout}) {
+
+
     return (
         <>
+
 
         <NavBar currentUser={currentUser} logout={logout} />
         <div class="image-container">
             <img src="background1.png" alt="Home"/>
     
-                <NavLink to ="/signup">
+            <NavLink to ="/signup">
                 <button onClick="/signup'">Sign Up</button>
                 </NavLink>
 
