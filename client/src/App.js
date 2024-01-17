@@ -1,13 +1,15 @@
 
 import './App.css';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Signup from './component/UserPanel/Signup';
 import Login from './component/UserPanel/Login';
 import Logout from './component/UserPanel/Logout';
 import Home from './pages/Home';
 import HolisticChatBot from './pages/HolisticChatBot'
-import Calendar from './component/GoogleCalendar/Calendar';
+import Calendar from './component/GoogleCalendar/DietPlanner';
+import HealthSearchPage from './component/Health Search/HealthSearchPage';
+import DietPlanner from './component/GoogleCalendar/DietPlanner';
 
 const POST_HEADERS = {
   'Content-Type': 'application/json',
@@ -17,6 +19,8 @@ const POST_HEADERS = {
 const URL = '/api'
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
+
+  console.log(currentUser)
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [user, setUser] = useState(null);
 
@@ -29,6 +33,19 @@ function App() {
   //   setIsLoggedIn(false);
   //   setUser(null);
   // }
+
+  useEffect(()=> {
+    fetch(URL + '/check_session')
+    .then(res => {
+      if (res.ok) {
+        res.json().then(user => {
+          setCurrentUser(user)
+        })
+      }
+    })
+  }, [])
+
+  
 // SIGNUP //
 async function attemptSignup(userInfo) {
   const res = await fetch(URL + '/signup', {
@@ -46,8 +63,7 @@ async function attemptSignup(userInfo) {
 
 // LOGIN //
 async function attemptLogin(userInfo) {
-  console.log(currentUser)
-  const res = await fetch("http://127.0.0.1:5555" + URL + '/login', {
+  const res = await fetch(URL + '/login', {
     method: 'POST',
     headers: POST_HEADERS,
     body: JSON.stringify(userInfo)
@@ -56,14 +72,14 @@ async function attemptLogin(userInfo) {
     const data = await res.json()
     setCurrentUser(data)
   } else {
-    alert('Invalid sign up')
+    alert('Email or password is incorrect')
   }
 }
 
 // LOGOUT //
 function logout() {
   setCurrentUser(null)
-  fetch(URL + '/logout', { method: "DELETE" })
+  fetch(URL + '/api/logout', { method: "DELETE" })
 }
 
   const routes = [
@@ -86,12 +102,16 @@ function logout() {
     },
     {
       path: "/holistic-chat-bot",
-      element: <HolisticChatBot />
+      element: <HolisticChatBot currentUser={currentUser}/>
     },
     {
-      path: "/calendar",
-      element: <Calendar />
+      path: "/dietplanner",
+      element: <DietPlanner currentUser={currentUser} />
 
+    },
+    {
+      path: "/healthsearchpage",
+      element: <HealthSearchPage  currentUser={currentUser} />
     }
 
     

@@ -39,12 +39,7 @@ function Signup({attemptSignup}) {
         <h1 class="text-xxl-start">Signup</h1>
         </div>
         
-        <form onSubmit={(e) =>{
-            handleSubmit(e);
-            attemptSignup(userInfo);
-            navigate('/login');
-
-        } }id="signupForm">
+        <form onSubmit={handleSubmit}id="signupForm">
             <div class="p-2 bg-light border">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" onChange={handleChange} id="name" placeholder="Enter name" name="name"/>

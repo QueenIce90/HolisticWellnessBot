@@ -22,30 +22,11 @@ class User(db.Model, SerializerMixin):
     password_hash = db.Column(db.String)
 
     # RELATIONSHIP #
-    chat = db.relationship('Chat', back_populates='user')
+    # chat = db.relationship('Chat', back_populates='user')
 
     # SERIALIZER #
-    serialize_rules = ("-chat",)
+    serialize_rules = ("-password_hash",)
 
-
-# --- Chat --- #
-
-class Chat(db.Model, SerializerMixin):
-    # TABLE #
-    __tablename__ = 'chat'
-
-    # COLUMNS #
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    treatment_id = db.Column(db.Integer, db.ForeignKey('treatment.id'), nullable=False)
-
-    # RELATIONSHIP #
-    user = db.relationship('User', back_populates='chat')
-    healthconditions = db.relationship('HealthConditions', secondary = 'chat_healthconditions_association', back_populates = 'chats')
-    treatment = db.relationship('Treatment', back_populates = 'chats')
-
-    # SERIALIZER #
-    serialize_rules = ("-user",)
 
 # --- Health Conditions ---- #
 class HealthConditions(db.Model, SerializerMixin):
@@ -57,13 +38,29 @@ class HealthConditions(db.Model, SerializerMixin):
     name = db.Column(db.String(255), nullable=False)
 
     # RELATIONSHIP #
-    chats = db.relationship('Chat', secondary='chat_healthconditions_association', back_populates = 'healthconditions')
-    treatments = db.relationship('Treatment', secondary = 'healthcondition_treatment_association', back_populates = 'healthconditions')
+    # chats = db.relationship('Chat', secondary='chat_healthconditions_association', back_populates = 'healthconditions')
+    deficiencies = db.relationship('Deficiency', secondary = 'healthcondition_deficiency_treatment_association', back_populates = 'healthconditions')
+    treatments = db.relationship('Treatment', secondary = 'healthcondition_deficiency_treatment_association', back_populates = 'healthconditions', overlaps="deficiencies")
 
     # SERIALIZER #
     serialize_rules = ("-id",)
 
+class Deficiency(db.Model, SerializerMixin):
+    # TABLE #
+    __tablename__ = 'deficiencies'
 
+    # COLUMNS #
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    vitamins = db.Column(db.String, nullable=False)
+    nutrients = db.Column(db.String, nullable=False)
+
+
+    # RELATIONSHIP #
+    healthconditions = db.relationship('HealthConditions', secondary = 'healthcondition_deficiency_treatment_association', back_populates = 'deficiencies')
+    treatments = db.relationship('Treatment', secondary = 'healthcondition_deficiency_treatment_association', back_populates = 'deficiencies', overlaps="healthconditions, treatments")
+    
+    serialize_rules = ("-id",)
 
 class Treatment(db.Model, SerializerMixin):
     # TABLE #
@@ -75,23 +72,22 @@ class Treatment(db.Model, SerializerMixin):
     condition = db.Column(db.String, nullable=False)   
 
     # RELATIONSHIP #
-    chats = db.relationship('Chat', back_populates = 'treatment')
-    healthconditions = db.relationship('HealthConditions', secondary = 'healthcondition_treatment_association', back_populates = 'treatments')
+    
+    healthconditions = db.relationship('HealthConditions', secondary = 'healthcondition_deficiency_treatment_association', back_populates = 'treatments')
+    deficiencies = db.relationship('Deficiency', secondary = 'healthcondition_deficiency_treatment_association', back_populates = 'treatments', overlaps="deficiencies,healthconditions")    
 
     # SERIALIZER #
-    serialize_rules = ("-chats",)
+    serialize_rules = ("-id",)
 
-#------- Association Table for chat and healthcondition ------#
-chat_healthconditions_association = db.Table(
-    'chat_healthconditions_association',
-    db.Column('chat_id', db.Integer, db.ForeignKey('chat.id')),
-    db.Column('healthcondition_id', db.Integer, db.ForeignKey('healthconditions.id'))
-)
 
-#------ Association Table for chat and treatment ------#
+#------ Association Table for healthconditions, deficiencies, treatment ------#
 
-healthcondition_treatment_association = db.Table(
-    'healthcondition_treatment_association',
+healthcondition_deficiency_treatment_association = db.Table(
+
+    'healthcondition_deficiency_treatment_association',
     db.Column('healthcondition_id', db.Integer, db.ForeignKey('healthconditions.id')),
+    db.Column('deficiencies_id', db.Integer, db.ForeignKey('deficiencies.id')),
     db.Column('treatment_id', db.Integer, db.ForeignKey('treatment.id'))
 )
+
+

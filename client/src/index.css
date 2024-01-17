@@ -1,6 +1,8 @@
-
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 *{
-  color: #fff;
+  color: #7d4577;
   font-family: 'Open Sans', sans-serif;
 }
 body {
@@ -10,7 +12,7 @@ body {
 }
 
 .HolisticChatBot {
-  background-color: #343541;
+  background-color: #f192e9;
   display: flex;
 
 }
@@ -77,6 +79,7 @@ code {
   color: rgba(255,255,255,0.5);
   font-size: 11px;
   padding: 10px;
+
 
 }
 .bottom-section{
@@ -165,15 +168,13 @@ padding-left: 0%;
 /* NavBar.css */
 
 .navbar {
-  /* display: flex; */
   background-color: #77d7de;
-  /* padding: 10px; */
   justify-content: space-between;
   align-items: center;
   height: 6vh;
   display: grid;
   align-items: center; 
-  grid-template-columns: 0.5fr 0.5fr o.5fr; 
+  grid-template-columns: 0.2fr 0.2fr 0.2fr;
 }
 
 .navbar a {

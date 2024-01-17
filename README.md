@@ -1,71 +1,69 @@
-# Getting Started with Create React App
+# Holistic Wellness AI Web App
+![Alt text](client/public/background1.png)
+![my alt text](logo1.jpg)
+🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸
+# Overview
+The Holistic Wellness Web App is a powerful tool designed to assist users in understanding their health conditions better and providing information on potential deficiencies. This comprehensive web application focuses on promoting a holistic approach to well-being, incorporating knowledge about alkaline foods to aid in treatment diet plans.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Features
+Health Condition Lookup: Users can input their health conditions, and the app will provide information on potential deficiencies associated with the given condition.
 
-## Available Scripts
+Deficiency Information: Receive detailed insights into the vitamins and nutrients the body may lack during a specific health condition.
 
-In the project directory, you can run:
+Alkaline Foods Database: Explore a rich database of alkaline foods, including fruits, vegetables, nuts, seeds, and herbs, recommended for various health conditions.
 
-### `npm start`
+Treatment Diet Plans: Get personalized diet plans based on alkaline foods to address deficiencies and promote overall health.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Warning System: Receive alerts about foods that may not be suitable for optimal body function, ensuring a well-informed dietary choice.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Dependencies / Prerequisites
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.2",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
+    "type": "module",
+    "openai":"4.24.7"
+    [packages]
+python-dotenv = "*"
+flask = "*"
+flask-migrate = "*"
+flask-bcrypt = "*"
+openai = "0.28.0"
+flask-sqlalchemy = "*"
+sqlalchemy = "*"
+sqlalchemy-serializer = "*"
+python_version = "3.8"
 
-### `npm test`
+# Installation
+Clone the repository: git clone https://github.com/QueenIce90/HolisticWellnessBot
+Navigate to the project directory: cd holistic-wellness
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Frontend
+Navigate to the frontend directory: cd frontend
+Install dependencies: npm install
+Start the application: npm start
 
-### `npm run build`
+# Backend
+Navigate to the backend directory: cd backend
+Create a virtual environment: python -m venv venv
+Activate the virtual environment:
+On Windows: venv\Scripts\activate
+On macOS/Linux: source venv/bin/activate
+Install dependencies: pip install -r requirements.txt
+Start the Flask server: python app.py
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Contributing
 
-### `npm run eject`
+We welcome contributions from the community! If you'd like to contribute to the project, please follow the guidelines outlined in the CONTRIBUTING.md.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-pip install python-dotenv

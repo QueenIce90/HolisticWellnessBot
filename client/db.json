@@ -1,0 +1,78 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "chett@gmail.com",
+            "password": "hashed_password",
+            "profile": {
+                "health_conditions": ["diabetes", "hypertension"],
+                "dietary_preferences": ["Alkaline Food"],
+                "restrictions": ["gluten-free", "dairy-free", "no-meat", "no-soy"]
+            },
+            "diet_plan": {
+                "id": 1,
+                "name": "Diet Plan 1",
+                "description": "Place Your Diet Plan that fits you",
+                "instructions": "1. Eat healthy\n2. Stay hydrated\n3. Exercise",
+                "calories": 2000
+            }
+        }
+    ],
+    "foods": [
+        {
+            "id": 1,
+            "name": "Kale",
+            "nutrients": {
+                "calories": 55,
+                "protein": 3.7,
+                "carbs": 11.2,
+                "fats": 0.6,
+                "ph_level": 5.8
+            }
+        }
+        
+    ],
+    "meal_plans": [
+        {
+            "id": 1,
+            "name": "Diet Plan 1",
+            "description": "This is a sample meal plan",
+            "instructions": "1. Eat healthy\n2. Stay hydrated\n3. Exercise",
+            "calories": 2000,
+            "meal_items": [
+                {
+                    "id": 1,
+                    "name": "Breakfast",
+                    "calories": 500,
+                    "date": "2024-01-15"
+                },
+                {
+                    "id": 2,
+                    "name": "Lunch",
+                    "calories": 600,
+                    "date": "2024-01-15"
+                },
+                {
+                    "id": 3,
+                    "name": "Dinner",
+                    "calories": 700,
+                    "date": "2024-01-15"
+                }
+            ]
+        }
+    ],
+    "meal_logs": [
+        {
+            "id": 1,
+            "name": "Breakfast",
+            "calories": 500,
+            "date": "2024-01-15"
+        },
+        {
+            "id": 2,
+            "name": "Lunch",
+            "calories": 600
+    
+        }
+    ]
+}

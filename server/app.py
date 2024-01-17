@@ -5,7 +5,7 @@ import openai
 from flask import Flask, jsonify, request, session
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
-from models import db, User, Chat, HealthConditions, Treatment
+from models import db, User, HealthConditions, Treatment, Deficiency
 from flask_cors import CORS
 
 load_dotenv()
@@ -93,21 +93,21 @@ def logout():
 
 # EXAMPLE OTHER RESOURCES #
 
-@app.get(URL_PREFIX + '/chats')
-def get_chats():
-    return jsonify( [chat.to_dict() for chat in current_user().chats] ), 200
+# @app.get(URL_PREFIX + '/chats')
+# def get_chats():
+#     return jsonify( [chat.to_dict() for chat in current_user().chats] ), 200
 
-@app.post(URL_PREFIX + '/chats')
-def create_chat():
-    try:
-        data = request.json
-        new_chat = Chat(**data)
-        new_chat.user = current_user()
-        db.session.add(new_chat)
-        db.session.commit()
-        return jsonify( new_chat.to_dict() ), 201
-    except Exception as e:
-        return jsonify( {'error': str(e)} ), 406
+# @app.post(URL_PREFIX + '/chats')
+# def create_chat():
+#     try:
+#         data = request.json
+#         new_chat = Chat(**data)
+#         new_chat.user = current_user()
+#         db.session.add(new_chat)
+#         db.session.commit()
+#         return jsonify( new_chat.to_dict() ), 201
+#     except Exception as e:
+#         return jsonify( {'error': str(e)} ), 406
 
 
 #----- Health Conditions Routes ------#
@@ -164,6 +164,30 @@ def create_treatment():
         return jsonify({'error': str(e)}), 406
     
 
+# --- Deficiency Routes --- #
+@app.route('/deficiencies', methods=['GET'])
+def get_deficiencies():
+    deficiencies = Deficiency.query.all()
+    return jsonify([deficiency.to_dict() for deficiency in deficiencies]), 200
+
+@app.route('/deficiencies/<int:deficiency_id>', methods=['GET'])
+def get_deficiency(deficiency_id):
+    deficiency = Deficiency.query.get(deficiency_id)
+    if deficiency:
+        return jsonify(deficiency.to_dict()), 200
+    else:
+        return {'error': 'Deficiency not found'}, 404
+    
+@app.route('/deficiencies', methods=['POST'])
+def create_deficiency():
+    try:
+        data = request.json
+        new_deficiency = Deficiency(**data)
+        db.session.add(new_deficiency)
+        db.session.commit()
+        return jsonify(new_deficiency.to_dict()), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 406
     
 @app.route('/chatbot', methods=['POST'])
 def handle_request():

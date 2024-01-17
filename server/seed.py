@@ -1,5 +1,5 @@
 from random import randint, choice as rc, sample
-from models import User, Chat, HealthConditions, Treatment
+from models import User, Chat, HealthConditions, Treatment, Deficiency
 import time
 #Remote library imports
 from faker import Faker
@@ -13,9 +13,7 @@ from models import db
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
-        # db.drop_all()
-        # db.create_all()
-        # db.session.commit()
+        
 
         User.query.delete()
         print("Start seed....")
@@ -26,22 +24,21 @@ if __name__ == '__main__':
         db.session.commit()
     
 
-        # Chat.query.delete()
-        
-        # chats = []
-        # for i in range(15):
-        #     chats.append(Chat(user=rc(users), treatment=rc(Treatment.query.all())))
-        #     db.session.add_all(chats)
-        # db.session.commit()
-        Chat.query.delete()
+        Deficiency.query.delete()
         print("Start seed....")
-        chats = []
+        deficiencies = []
+        for i in range(10):
+            deficiencies.append(Deficiency(name=fake.text()))
+            db.session.add_all(deficiencies)
+        db.session.commit()
+    
 
         HealthConditions.query.delete()
         print("Start seed....")
         healthConditons = []
         for health in HealthConditions.query.all():
             healthConditons.append(HealthConditions(name=health.name))
+        
             db.session.add_all(healthConditons)
         db.session.commit()
 

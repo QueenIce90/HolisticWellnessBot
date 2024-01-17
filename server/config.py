@@ -1,12 +1,10 @@
-
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_bcrypt import Bcrypt
-from sqlalchemy import MetaData, func
+from flask_bcrypt import Bcrypt  # Remove the duplicate import
+from sqlalchemy import MetaData
 from flask_restful import Api, Resource
-from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.secret_key = b"Y\xf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K"

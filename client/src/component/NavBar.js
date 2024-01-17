@@ -3,42 +3,68 @@ import React from 'react';
 // import { Navbar as BootstrapNavbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-function NavBar() {
+function NavBar({currentUser}) {
     return (
 
-            <div class="btn btn-primary">
+            <div className="navbar">
             
             <NavLink to="/">
-            <button className="navbar-brand" 
+            <button className="navbar-button" 
             >Home</button>
             </NavLink>
 
             {/* #Signup Button# */}
-            <NavLink to="/signup">
-            <button className="navbar-brand" 
+            {/* <NavLink to="/signup">
+            <button className="navbar-button" 
             >Signup</button>
-            </NavLink>
+            </NavLink> */}
+            
+            {currentUser? null:  <NavLink to="/signup">
+            <button className="navbar-button" 
+            >Signup</button>
+            </NavLink>}
 
 
 
             {/* # Login Button# */}
-            <NavLink  to="/login">
-            <button className="navbar-brand" 
+            {/* <NavLink  to="/login">
+            <button className="navbar-button" 
             >Login</button>
-            </NavLink>
+            </NavLink> */}
+            {currentUser? null:<NavLink  to="/login">
+            <button className="navbar-button" 
+            >Login</button>
+            </NavLink>}
 
             
             {/* # ChatBot Button# */}
             <NavLink to="/holistic-chat-bot">
-            <button className="navbar-brand" 
+            <button className="navbar-button" 
             >Holistic ChatBot</button>
             </NavLink>
 
-            <NavLink to="/calendar">
-            <button className="navbar-brand"
-            >Calendar</button>
+            <NavLink to="/dietplanner">
+            <button className="navbar-button"
+            >Diet Planner</button>
             </NavLink>
 
+            <NavLink to="/healthsearchpage">
+            <button className="navbar-button"
+            >Health Search</button>
+            </NavLink>
+
+            {/* <NavLink to="/logout">
+            <button className="navbar-button"
+            >Logout</button>
+            </NavLink> */}
+
+            {currentUser? <NavLink to="/logout">
+            <button className="navbar-button"
+            >Logout</button>
+            </NavLink>: null}
+
+
+{/* 
 
             <div>
             <form class="form-inline my-2 my-lg-0">
@@ -46,7 +72,7 @@ function NavBar() {
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
             
-            </div>
+            </div> */}
             </div>
             
 

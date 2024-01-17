@@ -4,10 +4,11 @@
 // import { options } from "openai";
 
 import {useState, useEffect} from 'react'
+import NavBar from '../component/NavBar';
 
 
 
-function HolisticChatBot() {
+function HolisticChatBot({currentUser}) {
     const [value, setValue] = useState(null);
     const [message, setMessage] = useState(null);
     const [previousChats, setPreviousChats ] = useState([]);
@@ -23,6 +24,7 @@ function HolisticChatBot() {
         setMessage(null)
     }
     const getMessages = async () => {
+
         const options = {
             method: "POST",
             body: JSON.stringify({ prompt: value, content: message?.content || "" }),
@@ -34,22 +36,7 @@ function HolisticChatBot() {
         try {
             const response = await fetch('http://127.0.0.1:5555/chatbot', options);
             const message = await response.json();
-            console.log("Here's my data: ", message);
-            setMessage(message?.content || "No response message");
-            // setMessage(data["message"])
-            setValue("");
-        } catch (error) {
-            console.log("uh oh")
-            console.error(error);
-        }
-    };
-    
-    useEffect(() => {
-        console.log(currentTitle, value, message)
-        if (!currentTitle && value) {
-            setCurrentTitle("test")
-        }
-        if (currentTitle && value && message) {
+
             setPreviousChats(prevChats => (
                 [...prevChats,
                     {
@@ -66,8 +53,41 @@ function HolisticChatBot() {
 
             ]
             ))
-                    
+
+            console.log("Here's my data: ", message);
+            setMessage(message?.content || "No response message");
+            // setMessage(data["message"])
+            setValue("");
+        } catch (error) {
+            console.log("uh oh")
+            console.error(error);
         }
+    };
+    
+    useEffect(() => {
+        console.log(currentTitle, value, message)
+        if (!currentTitle && value) {
+            setCurrentTitle("Health Condition Search")
+        }
+        // if (currentTitle && value && message) {
+        //     setPreviousChats(prevChats => (
+        //         [...prevChats,
+        //             {
+        //             title: currentTitle,
+        //             role:"user",
+        //             content: value
+        //         }, 
+        //         {
+        //         title: currentTitle,
+        //         role: message.role,
+        //         content:message.content
+        //         }
+
+
+        //     ]
+        //     ))
+                    
+        // }
     }, [value, message, currentTitle])
     console.log(previousChats)
 
@@ -75,8 +95,12 @@ function HolisticChatBot() {
     const uniqueTitles = Array.from(new Set(previousChats.map(previousChat => previousChat.title)))
 
     console.log(uniqueTitles)
+    console.log(previousChats)
+    console.log(currentChat)
 
     return (
+        <>
+        <NavBar currentUser={currentUser} />
     
         <div className="HolisticChatBot">
             
@@ -120,6 +144,7 @@ function HolisticChatBot() {
 
             </section>
         </div>
+        </>
     );
 }
 

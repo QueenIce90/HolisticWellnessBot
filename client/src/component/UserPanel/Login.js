@@ -1,8 +1,22 @@
 import NavBar from "../NavBar";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
-function Login({currentUser, attemptLogin, setCurrentUser}) {
+function Login({attemptLogin}) {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        attemptLogin({email, password});
+        navigate("/")
+    }
+
     return (
         
         <>
@@ -13,13 +27,13 @@ function Login({currentUser, attemptLogin, setCurrentUser}) {
         <form id="signupForm">
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"/>
+                <input onChange={e => setEmail(e.target.value)} value = {email} type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"/>
+                <input onChange={e => setPassword(e.target.value)} value = {password} type="password" class="form-control" id="password" placeholder="Enter password" name="password"/>
             </div>
-            <button onClick={() => {attemptLogin(currentUser)}} type="button" class="btn btn-outline-primary">Login</button>
+            <button type="button" class="btn btn-outline-primary" onClick={handleSubmit}>Login</button>
             <p>Don't have an account? <a href="/signup">Signup</a></p>  
             <div id="errorMessage" class="error-message"></div>
         </form>
