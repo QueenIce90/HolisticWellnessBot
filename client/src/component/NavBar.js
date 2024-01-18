@@ -50,7 +50,7 @@ function NavBar({currentUser}) {
 
             <NavLink to="/healthsearchpage">
             <button className="navbar-button"
-            >Health Search</button>
+            >Nutri Search</button>
             </NavLink>
 
             {/* <NavLink to="/logout">

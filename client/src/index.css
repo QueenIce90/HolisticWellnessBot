@@ -2,7 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 *{
-  color: #7d4577;
+  color: #63235d;
   font-family: 'Open Sans', sans-serif;
 }
 body {
@@ -12,7 +12,7 @@ body {
 }
 
 .HolisticChatBot {
-  background-color: #f192e9;
+  background-color: #966392;
   display: flex;
 
 }
@@ -22,7 +22,7 @@ code {
 }
 
 .HolisticChatBot button {
-  border:solid 0.5px rgba(255, 255, 255, 0.05);
+  border:solid 0.5px white;
   background-color: transparent;
   border-radius: 5px;
   padding: 10px;
@@ -41,7 +41,7 @@ code {
 }
 
 .side-bar{
-  background-color: #202123;
+  background-color: #1b031c;
   height: 100vh;
   width: 244px;
   font-family: 'Montserrat', sans-serif;
@@ -49,6 +49,10 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.new-chat{
+  color: white;
 }
 
 .history{
@@ -75,10 +79,18 @@ code {
   text-align: center;
 }
 
+.main h1 {
+  color: white;
+  
+}
+
 .info{
-  color: rgba(255,255,255,0.5);
+  color: rgba(81, 14, 90, 0.5);
   font-size: 11px;
-  padding: 10px;
+  padding: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
 
 
 }
@@ -102,12 +114,11 @@ input {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 12px 15px;
   border-radius: 5px;
-  box-shadow: rgba(0,0,0,0.05) 0 54px 55px,
-    rgba(0,0,0,0.05) 0 -12px 30px,
-    rgba(0,0,0,0.05) 0 4px 6px,
-    rgba(0,0,0,0.05) 0 12px 3px,
-    rgba(0,0,0,0.05) 0 -3px 5px,
+  box-shadow: white
 
+}
+.input-container input{
+  color: white;
 }
 
 input:focus{
@@ -168,13 +179,15 @@ padding-left: 0%;
 /* NavBar.css */
 
 .navbar {
+  /* display: flex; */
   background-color: #77d7de;
+  /* padding: 10px; */
   justify-content: space-between;
   align-items: center;
   height: 6vh;
   display: grid;
   align-items: center; 
-  grid-template-columns: 0.2fr 0.2fr 0.2fr;
+  grid-template-columns: 0.5fr 0.5fr o.5fr; 
 }
 
 .navbar a {
@@ -191,6 +204,104 @@ padding-left: 0%;
 .navbar a:hover {
   color: purple;
 }
+
+.logo {
+  width: 10%;
+  height: 10%;
+  padding-bottom: 0%;
+  padding-right: 0;
+
+}
+.signup-buttons {
+  padding: 0%;
+  margin-top: 0%;
+  margin-bottom: 9%;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 30px;
+  font-weight: 100;
+  font: georgia, xx-large
+
+}
+
+
+
+.signup-buttons button {
+  position: absolute;
+  bottom: -13%; /* Adjust the distance from the bottom as needed */
+  left: 69%; /* Adjust the distance from the right as needed */
+  padding: 4px;
+  padding-bottom: 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: x-large;
+  background-color: #68f1f1;
+  box-shadow: 0 0 10px rgb(16, 144, 223);
+  transition: background-color 0.3s ease;
+  font-size: extra-large;
+}
+.signup-buttons button:hover {
+  background-color: white;
+  box-shadow: 0 0 12px rgb(16, 144, 223);
+}
+
+.signup-buttons a {
+  text-decoration: none;
+  color: purple
+  
+}
+
+.signup-buttons a:hover {
+  text-decoration: underline;
+  
+
+}
+
+.health-search{
+  color: black;
+  text-align: center;
+  padding: 10px;
+}
+
+.health-search h4{
+  
+  margin: auto;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 5px;
+  border-radius: 5px;
+
+}
+
+.text-center{
+
+  color: rgb(150, 10, 10);
+  margin: auto;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 5px;
+  border-radius: 5px;
+
+}
+
+.image-container {
+  position: relative;
+}
+
+img {
+  width: 100%; /* Set the width to 100% of the container */
+  height: auto; /* Maintain the aspect ratio of the image */
+  margin: auto; /* Center the image */
+  block-size: auto;
+}
+
+
+
+
+
+
 
 
 

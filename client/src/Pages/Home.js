@@ -14,9 +14,9 @@ function Home({currentUser, logout}) {
         <div class="image-container">
             <img src="background1.png" alt="Home"/>
     
-            <NavLink to ="/signup">
+            {/* <NavLink to ="/signup">
                 <button onClick="/signup'">Sign Up</button>
-                </NavLink>
+                </NavLink> */}
 
         <div className="home-text">
             <img src="background2.png" alt="Home"/>
@@ -36,7 +36,7 @@ function Home({currentUser, logout}) {
     </div>
     <div class="signup-buttons">
                     <NavLink to ="/signup">
-                    <button onClick="/signup'">Click Here</button>
+                    <button onClick="/signup'">Sign Up Now</button>
                     </NavLink>
                     </div>
 

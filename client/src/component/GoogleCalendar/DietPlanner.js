@@ -5,14 +5,9 @@ function DietPlanner({currentUser}) {
 const [meals, setMeals] = useState([]);
 const [tasks, setTasks] = useState([]);
 
-// const addMeal = () => {
-//     // Call setMeals to update meals with the meal plan that was just submitted.
-//     setMeals([...meals, newMealFromUser]);
-//     // Make a POST request where you send the meal plan that was just submitted to the database.
-//     // fetch("", {})
-//     // .then(response => response.json())
-//     // .then(newMeal => setMeals([...meals, newMealFromUser]));
-// };
+const addMeal = () => {
+    setMeals([...meals, '']);
+};
 const deleteMeal = (index) => setMeals(meals.filter((_, i) => i !== index));
 const updateMeal = (index, value) => setMeals(meals.map((m, i) => (i === index ? value : m)));
 
@@ -20,17 +15,32 @@ const addTask = () => setTasks([...tasks, '']);
 const deleteTask = (index) => setTasks(tasks.filter((_, i) => i !== index));
 const updateTask = (index, value) => setTasks(tasks.map((t, i) => (i === index ? value : t)));
 
-// function setMeals() {
-//     setMeals([]);
-// }
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('meals', JSON.stringify(meals));
+    formData.append('tasks', JSON.stringify(tasks));
+    const response = await fetch('http://127.0.0.1:5555/healthconditions', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await response.json();
+    console.log(data);
+}
 
 return (
     <>
     <NavBar currentUser={currentUser}/>
+    
     <div className="flex justify-center mt-10">
     <div className="w-1/2 bg-white shadow-md rounded p-8">
         <h2 className="text-xl font-bold mb-6">Diet Planner</h2>
+        <h1>COMING SOON</h1>
+        <h4>Join us on the journey to a healthier and more organized lifestyle. Holistic Wellness is committed to bringing you an all-in-one solution for your well-being. </h4>
+            <h1>Stay tuned for our official launch!</h1> 
         
+    
+    
         {meals.map((meal, index) => (
         <div className="flex items-center mb-4" key={index}>
             <input 
@@ -50,7 +60,7 @@ return (
         
         <button
         className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-        onClick={() => console.log("TODO")}
+        onClick={() => addMeal()}
         >
         Add Meal
         </button >

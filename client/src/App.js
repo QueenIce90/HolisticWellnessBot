@@ -119,8 +119,12 @@ function logout() {
   const router = createBrowserRouter(routes);
 
   return (
+    <>
+    <header style = {{background : "#ffffff", color :"#ffffff"}}>
+    <img class="logo" src="/logo3.png" alt="Schmooze"/>
+    </header>
     <RouterProvider router={router} />
-    
+    </>
   )
 }
 

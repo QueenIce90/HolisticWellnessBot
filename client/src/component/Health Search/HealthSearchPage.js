@@ -30,6 +30,12 @@ const handleSearch = () => {
 return (
     <>
     <NavBar currentUser={currentUser}/>
+    <div className='health-search'>
+    <h2> NutriSearch: Explore Health Conditions and Nutritional Solutions</h2>
+    <h4>Introducing NutriSearch, our innovative feature on the Health Search Page that allows you to delve into a comprehensive list of health conditions. Gain insights into the specific vitamin and nutrient deficiencies associated with each condition and discover a curated selection of foods that can help treat and alleviate those health concerns.</h4>
+    
+</div>
+
     <div className="py-6 flex flex-col justify-center relative overflow-hidden sm:py-12">
     <div className="relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10">
         <div className="max-w-md mx-auto">
@@ -59,12 +65,24 @@ return (
                 <h2 className="text-xl font-semibold">Treatment</h2>
                 <p>{treatment}</p>
                 </div>
+                
             )}
             </div>
         </div>
         </div>
     </div>
     </div>
+    <h5 className='text-center'>Key Features:
+
+Condition-Specific Information: Access detailed information about various health conditions, understanding the nutritional aspects related to each.
+
+Nutrient Deficiency Insights: Learn about the specific vitamins and nutrients commonly associated with each health condition, helping you address deficiencies effectively.
+
+Food Remedies: Explore a curated list of foods known for their therapeutic properties in treating and managing specific health conditions.
+
+Personalized Health Guidance: Receive personalized recommendations based on your unique health needs, empowering you to make informed dietary choices.
+
+NutriSearch is your go-to tool for a holistic approach to health, providing valuable insights into the nutritional aspects of various conditions and guiding you towards a well-balanced and nourishing lifestyle. Stay tuned for the launch of this empowering feature on our Health Search Page!</h5>
     </>
 );
 }
